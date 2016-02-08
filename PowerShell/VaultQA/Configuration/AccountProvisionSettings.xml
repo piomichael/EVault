@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Configuration>
+	<VaultInformation>
+		<Address Name='127.0.0.1'/>
+	</VaultInformation>
+	<AccountInformation>
+		<CustomerName>Customer</CustomerName>
+		<CustomerPhone>012-345-6789</CustomerPhone>
+		<CustomerLocation>default</CustomerLocation>
+		<CustomerBillingCodePrefix>api</CustomerBillingCodePrefix>
+		<AccountName>Customer</AccountName>
+		<AccountUserName>Username</AccountUserName>
+		<AccountPassword>Password</AccountPassword>
+		<AccountQuantity>9</AccountQuantity>
+	</AccountInformation>
+	<ComputerInformation>
+		<ComputerName>Computer</ComputerName>
+		<ComputerQuantity>5</ComputerQuantity>
+	</ComputerInformation>
+	<TaskInformation>
+		<TaskName>Task</TaskName>
+		<TaskQuantity>5</TaskQuantity>
+	</TaskInformation>
+	<FakeAgentFilePath>FakeAgent\FakeAgent.exe</FakeAgentFilePath>
+</Configuration>
