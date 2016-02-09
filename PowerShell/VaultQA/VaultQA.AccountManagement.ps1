@@ -222,7 +222,7 @@ function VaultQA.New-Computer
                 $AccountName     = "-Account=" + $AccountName
                 $AccountUserName = "-User=" + $AccountUserName
                 $AccountPassword = "-Password=" + $AccountPassword
-                $VaultAddress    = "-Vault=" + $VaultAddress
+                $Vault    = "-Vault=" + $VaultAddress
                 $VaultLocation   = "-Remote"
 
                 # Registering new Computer to the Vault.
@@ -230,7 +230,7 @@ function VaultQA.New-Computer
                 while ($ProcessCount -le $ComputerQuantity)
                 {
                     $ComputerNameIncrement = "-ComputerName=" + $ComputerName + "{0:D2}" -F $ProcessCount
-                    Start-Process -FilePath $FakeBinary -ArgumentList "$Command $ComputerNameIncrement $AgentId $AccountName $AccountUserName $AccountPassword $VaultAddress $VaultLocation" -NoNewWindow -Wait
+                    Start-Process -FilePath $FakeBinary -ArgumentList "$Command $ComputerNameIncrement $AgentId $AccountName $AccountUserName $AccountPassword $Vault $VaultLocation" -NoNewWindow -Wait
                     $ProcessCount++
                 }
             }
@@ -330,7 +330,7 @@ function VaultQA.New-Task
                 $AccountName     = $Customer.Split(",")[0]
                 $AccountUserName = $Customer.Split(",")[1]
                 $AccountPassword = $Customer.Split(",")[2]
-                $ComputerGuid    = $Cusotmer.Split(",")[3]
+                $ComputerGuid    = $Customer.Split(",")[3]
 
                 # FakeAgent parameters to register a new computer.
                 $Command         = "Register Task"
@@ -338,24 +338,15 @@ function VaultQA.New-Task
                 $AccountName     = "-Account=" + $AccountName
                 $AccountUserName = "-User=" + $AccountUserName
                 $AccountPassword = "-Password=" + $AccountPassword
-                $VaultAddress    = "-Vault=" + $VaultAddress
+                $Vault           = "-Vault=" + $VaultAddress
                 $VaultLocation   = "-Remote"
 
                 # Registering new Task to the Vault.
                 $ProcessCount = 1
                 while ($ProcessCount -le $TaskQuantity)
                 {
-                    $TaskName = "-TaskName=" + $ComputerName + "{0:D2}" -F $ProcessCount
-                    Start-Process -FilePath $FakeBinary -ArgumentList "`
-                        $Command `
-                        $TaskName `
-                        $ComputerGuid `
-                        $AccountName `
-                        $AccountUserName `
-                        $AccountPassword `
-                        $VaultAddress `
-                        $VaultLocation `
-                        " -NoNewWindow -Wait
+                    $TaskNameIncrement = "-TaskName=" + $TaskName + "{0:D2}" -F $ProcessCount
+                    Start-Process -FilePath $FakeBinary -ArgumentList "$Command $TaskNameIncrement $ComputerGuid $AccountName $AccountUserName $AccountPassword $Vault $VaultLocation" -NoNewWindow -Wait
                     $ProcessCount++
                 }
             }
