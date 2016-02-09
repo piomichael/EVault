@@ -135,7 +135,7 @@ function VaultQA.New-Computer
     Param
     (
         [Parameter(Mandatory=$true,ValueFromPipelineByPropertyName=$true)]
-        [String]$Configuration
+        [String]$XMLConfigurationFile
     )
 
     Begin
@@ -168,8 +168,8 @@ function VaultQA.New-Computer
             $VaultAddress = $args[0]
 
             # Creating VaultApi ComObjects.
-            $VaultConnection = New-Object SbeAccountManager.VaultConnection
-            $VaultManager    = New-Object SbeAccountManager.Manager
+            $VaultConnection = New-Object -ComObject SbeAccountManager.VaultConnection
+            $VaultManager    = New-Object -ComObject SbeAccountManager.Manager
 
             # Setting VaultConnection parameters.
             $VaultConnection.Address            = $VaultAddress
@@ -229,17 +229,8 @@ function VaultQA.New-Computer
                 $ProcessCount = 1
                 while ($ProcessCount -le $ComputerQuantity)
                 {
-                    $ComputerName = "-ComputerName=" + $ComputerName + "{0:D2}" -F $ProcessCount
-                    Start-Process -FilePath $FakeBinary -ArgumentList "`
-                        $Command `
-                        $ComputerName `
-                        $AgentId `
-                        $AccountName `
-                        $AccountUserName `
-                        $AccountPassword `
-                        $VaultAddress `
-                        $VaultLocation `
-                        " -NoNewWindow -Wait
+                    $ComputerNameIncrement = "-ComputerName=" + $ComputerName + "{0:D2}" -F $ProcessCount
+                    Start-Process -FilePath $FakeBinary -ArgumentList "$Command $ComputerNameIncrement $AgentId $AccountName $AccountUserName $AccountPassword $VaultAddress $VaultLocation" -NoNewWindow -Wait
                     $ProcessCount++
                 }
             }
@@ -253,7 +244,7 @@ function VaultQA.New-Task
     Param
     (
         [Parameter(Mandatory=$true,ValueFromPipelineByPropertyName=$true)]
-        [String]$Configuration
+        [String]$XMLConfigurationFile
     )
 
     Begin
@@ -286,8 +277,8 @@ function VaultQA.New-Task
             $VaultAddress = $args[0]
 
             # Creating VaultApi ComObjects.
-            $VaultConnection = New-Object SbeAccountManager.VaultConnection
-            $VaultManager    = New-Object SbeAccountManager.Manager
+            $VaultConnection = New-Object -ComObject SbeAccountManager.VaultConnection
+            $VaultManager    = New-Object -ComObject SbeAccountManager.Manager
 
             # Setting VaultConnection parameters.
             $VaultConnection.Address            = $VaultAddress

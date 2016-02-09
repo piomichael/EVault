@@ -8,10 +8,10 @@
 		<CustomerPhone>012-345-6789</CustomerPhone>
 		<CustomerLocation>default</CustomerLocation>
 		<CustomerBillingCodePrefix>api</CustomerBillingCodePrefix>
-		<AccountName>Customer</AccountName>
-		<AccountUserName>Username</AccountUserName>
-		<AccountPassword>Password</AccountPassword>
-		<AccountQuantity>9</AccountQuantity>
+		<CustomerAccountName>Customer</CustomerAccountName>
+		<CustomerAccountUserName>Username</CustomerAccountUserName>
+		<CustomerAccountPassword>Password</CustomerAccountPassword>
+		<CustomerAccountQuantity>1</CustomerAccountQuantity>
 	</AccountInformation>
 	<ComputerInformation>
 		<ComputerName>Computer</ComputerName>
